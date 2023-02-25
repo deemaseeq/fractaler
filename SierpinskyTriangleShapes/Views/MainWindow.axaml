@@ -14,7 +14,22 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Canvas Background="Beige" Width="500" Height="500">
+
+        <Polygon Stroke="Black" Fill="CornflowerBlue" StrokeThickness="1"
+				 Points="{Binding MainTriangle.Points}"/>
+        
+        <Polygon Stroke= "Black" Fill="Coral" StrokeThickness="1"
+                 Points="{Binding InlineTriangle.Points}"/>
+
+
+        <!-- <Polygon Stroke="Black" Fill="Orange" StrokeThickness="1"
+                 Canvas.Left="10" Canvas.Top="10"
+                 Points="0,433 250,0 500,433"/>
+
+        <Line StartPoint="120,185" EndPoint="30,115" Stroke="Red" StrokeThickness="2"/>
+        <Polygon Points="75,0 120,120 0,45" Stroke="DarkBlue" StrokeThickness="1" Fill="Violet" Canvas.Left="150" Canvas.Top="31"/>
+        <Polyline Points="0,0 65,0 78,-26 91,39 104,-39 117,13 130,0 195,0" Stroke="Brown" Canvas.Left="30" Canvas.Top="350"/> -->
+    </Canvas>
 
 </Window>
-
