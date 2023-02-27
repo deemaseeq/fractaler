@@ -1,35 +1,53 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:SierpinskyTriangleShapes.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="SierpinskyTriangleShapes.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="SierpinskyTriangleShapes">
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:SierpinskyTriangleShapes.ViewModels"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Width="800" Height="800"
+		x:Class="SierpinskyTriangleShapes.Views.MainWindow"
+		Icon="/Assets/avalonia-logo.ico"
+		Title="SierpinskyTriangleShapes">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
 
-    <Canvas Background="Beige" Width="500" Height="500">
+	<ItemsControl Items="{Binding TrianglesCollection}">
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<Canvas Background="Beige" Width="600" Height="600"/>
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
 
-        <Polygon Stroke="Black" Fill="CornflowerBlue" StrokeThickness="1"
+		<ItemsControl.ItemTemplate>
+			<DataTemplate>
+				<Polygon Stroke="Black" StrokeThickness="1"
+						 Fill="{Binding FillColor}"
+						 Points="{Binding Points}"/>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+
+	</ItemsControl>
+
+	<!--<Canvas Background="Beige" Width="500" Height="500">
+
+		<Polygon Stroke="Black" Fill="CornflowerBlue" StrokeThickness="1"
 				 Points="{Binding MainTriangle.Points}"/>
-        
-        <Polygon Stroke= "Black" Fill="Coral" StrokeThickness="1"
-                 Points="{Binding InlineTriangle.Points}"/>
+		
+		<Polygon Stroke= "Black" Fill="Coral" StrokeThickness="1"
+				 Points="{Binding InlineTriangle.Points}"/>
 
 
-        <!-- <Polygon Stroke="Black" Fill="Orange" StrokeThickness="1"
-                 Canvas.Left="10" Canvas.Top="10"
-                 Points="0,433 250,0 500,433"/>
+		<Polygon Stroke="Black" Fill="Orange" StrokeThickness="1"
+				 Canvas.Left="10" Canvas.Top="10"
+				 Points="0,433 250,0 500,433"/>
 
-        <Line StartPoint="120,185" EndPoint="30,115" Stroke="Red" StrokeThickness="2"/>
-        <Polygon Points="75,0 120,120 0,45" Stroke="DarkBlue" StrokeThickness="1" Fill="Violet" Canvas.Left="150" Canvas.Top="31"/>
-        <Polyline Points="0,0 65,0 78,-26 91,39 104,-39 117,13 130,0 195,0" Stroke="Brown" Canvas.Left="30" Canvas.Top="350"/> -->
-    </Canvas>
+		<Line StartPoint="120,185" EndPoint="30,115" Stroke="Red" StrokeThickness="2"/>
+		<Polygon Points="75,0 120,120 0,45" Stroke="DarkBlue" StrokeThickness="1" Fill="Violet" Canvas.Left="150" Canvas.Top="31"/>
+		<Polyline Points="0,0 65,0 78,-26 91,39 104,-39 117,13 130,0 195,0" Stroke="Brown" Canvas.Left="30" Canvas.Top="350"/>
+	</Canvas>-->
 
 </Window>

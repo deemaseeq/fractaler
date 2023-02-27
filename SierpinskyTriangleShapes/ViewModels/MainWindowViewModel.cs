@@ -1,68 +1,78 @@
 ﻿
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 using Avalonia;
-using Avalonia.Controls.Shapes;
-using DynamicData.Binding;
+using Avalonia.Media;
+
 using SierpinskyTriangleShapes.Models;
 
 namespace SierpinskyTriangleShapes.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel()
-    {
-        this.depth = 7;
+	public MainWindowViewModel()
+	{
 
-        //TODO Find a proper ObservableCollection implementation
-        TrianglesCollection = new ObservableCollectionExtended<Triangle>();
+		//TODO Find a proper ObservableCollection implementation
+		TrianglesCollection = new ObservableCollection<Triangle>();
 
-        MainTriangle = new Triangle(400, new Point(0, 400));
-
-        TrianglesCollection.Add(MainTriangle);
+		MainTriangle = new Triangle(500, new Point(0, 500));
+		MainTriangle.FillColor = Brushes.DarkSalmon;
 
 
 
-        InlineTriangle = MainTriangle.CreateInlineTriangle();
-    }
+		TrianglesCollection.Add(MainTriangle);
 
-    public Triangle MainTriangle { get; set; }
-    public Triangle InlineTriangle { get; set; }
+		CutTheCenter(MainTriangle.Points);
+	}
 
-    private IObservableCollection<Triangle> trianglesCollection;
-    public IObservableCollection<Triangle> TrianglesCollection
-    {
-        get => trianglesCollection;
-        set
-        {
-            trianglesCollection = value;
-            //TODO Notify property changed
-        }
-    }
+	public Triangle MainTriangle { get; set; }
 
-    private int depth;
+	private ObservableCollection<Triangle> trianglesCollection;
+	public ObservableCollection<Triangle> TrianglesCollection
+	{
+		get => trianglesCollection;
+		set
+		{
+			trianglesCollection = value;
+			//TODO Notify property changed
+		}
+	}
 
-    private void CutTheCenter(IList<Point> basic)
-    {
+	private int depth;
+	
 
-        Triangle cutted = Triangle.CreateInlineTriangle(basic);
-        TrianglesCollection.Add(cutted);
+	private void CutTheCenter(IList<Point> basic)
+	{
 
-        //TODO How to limit depth of the recursion?
+		Triangle cutted = Triangle.CreateInlineTriangle(basic);
+		cutted.FillColor = Brushes.WhiteSmoke;
+		TrianglesCollection.Add(cutted);
 
-        if (cutted.SideLength < 10)
-        {
-            return;
-        }
+		//! We can use some sort of tree structure to determine the depth of the fractal
+		//TODO Implement or find a suitable tree
 
-        CutTheCenter(new List<Point> { cutted.Points[0], basic[1], cutted.Points[2] });
-        CutTheCenter(new List<Point> { basic[0], cutted.Points[0], cutted.Points[1] });
-        CutTheCenter(new List<Point> { cutted.Points[1], cutted.Points[2], basic[2] });
-    }
+		if (cutted.SideLength < 5)
+		{
+			return;
+		}
 
-    //TODO Define the structure of the VM
-    //TODO Find out how ICommand works with ReactiveUI and Avalonia
+		CutTheCenter(new List<Point> { cutted.Points[0], basic[1], cutted.Points[1] });
+		CutTheCenter(new List<Point> { basic[0], cutted.Points[0], cutted.Points[2] });
+		CutTheCenter(new List<Point> { cutted.Points[2], cutted.Points[1], basic[2] });
+	}
 
-    //TODO Define how triangle will be drawn after the program start
-    //TODO Connect VM triangles collection with the view
+	//TODO Find a way to use .xaml file extension instead of .axaml
+
+	//TODO Define the structure of the VM
+	//TODO Find out how ICommand works with ReactiveUI and Avalonia
+
+	//TODO Create a UI wrap for the process
+	//TODO We need a button to create a canvas and build the triangle with given depth
+	//TODO Implement rebuilding with other parameters
+	//TODO Implement a color change
+
+	//TODO Determine if we need unit tests and write them if so
 }
 
