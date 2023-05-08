@@ -1,0 +1,58 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FractalerMain.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800" Height="800"
+        x:Class="FractalerMain.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Fractaler">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <!-- TODO: Create the design of the app. Canvas is a main control.
+               The control panel should be on the side with the options. -->
+    
+    
+    <DockPanel>
+        
+        <Border DockPanel.Dock="Top"
+                BorderBrush="Gray"
+                BorderThickness="0 0 0 2">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Margin="10" PlaceholderText="Fractal type"/>
+                <ComboBox Margin="10" PlaceholderText="Fractal depth"/>
+                <Button Margin="10">Press me</Button>
+            </StackPanel>
+        </Border>
+        
+        <UserControl DockPanel.Dock="Bottom"
+                     Content="{Binding Fractal}"/>
+        
+        <!--<ItemsControl DockPanel.Dock="Bottom"
+                      Items="{Binding TrianglesCollection}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Background="Beige" Width="600" Height="600"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Polygon Stroke="Black" StrokeThickness="1"
+                             Margin="50"
+                             Fill="{Binding FillColor}"
+                             Points="{Binding Points}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>-->
+    </DockPanel>
+    
+
+</Window>

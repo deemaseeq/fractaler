@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace SierpinskyTriangleShapes.ViewModels;
+namespace FractalerMain.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

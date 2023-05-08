@@ -2,7 +2,7 @@
 using Avalonia.ReactiveUI;
 using System;
 
-namespace SierpinskyTriangleShapes;
+namespace FractalerMain;
 
 class Program
 {

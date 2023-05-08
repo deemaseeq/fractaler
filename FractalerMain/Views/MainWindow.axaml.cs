@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace SierpinskyTriangleShapes.Views;
+namespace FractalerMain.Views;
 
 public partial class MainWindow : Window
 {

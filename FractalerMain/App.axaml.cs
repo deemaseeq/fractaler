@@ -1,10 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using SierpinskyTriangleShapes.ViewModels;
-using SierpinskyTriangleShapes.Views;
+using FractalerMain.ViewModels;
+using FractalerMain.Views;
 
-namespace SierpinskyTriangleShapes;
+namespace FractalerMain;
 
 public partial class App : Application
 {
