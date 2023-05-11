@@ -26,32 +26,22 @@
                 BorderThickness="0 0 0 2">
             <StackPanel Orientation="Horizontal">
                 <ComboBox Margin="10" PlaceholderText="Fractal type"/>
-                <ComboBox Margin="10" PlaceholderText="Fractal depth"/>
-                <Button Margin="10">Press me</Button>
+                
+                <Label Content="Depth:" VerticalContentAlignment="Center"
+                       Margin="10 10 3 10"/>
+                
+                <NumericUpDown Margin="3 10 10 10"
+                               Minimum="0" Maximum="8"
+                               Value="{Binding SelectedDepth}"/>
+                
+                <Button Margin="10" Content="Build the fractal"
+                        Command="{Binding Build}"/>
             </StackPanel>
         </Border>
         
         <UserControl DockPanel.Dock="Bottom"
-                     Content="{Binding Fractal}"/>
+                     Content="{Binding FractalViewModel}"/>
         
-        <!--<ItemsControl DockPanel.Dock="Bottom"
-                      Items="{Binding TrianglesCollection}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas Background="Beige" Width="600" Height="600"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Polygon Stroke="Black" StrokeThickness="1"
-                             Margin="50"
-                             Fill="{Binding FillColor}"
-                             Points="{Binding Points}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-
-        </ItemsControl>-->
     </DockPanel>
     
 

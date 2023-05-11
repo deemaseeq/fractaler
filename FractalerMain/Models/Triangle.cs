@@ -13,23 +13,26 @@ namespace FractalerMain.Models
 
             var height = sideLength * (Math.Sqrt(3) / 2);
 
+            Point firstPoint;
             Point secondPoint;
             Point thirdPoint;
 
             if (isFlipped)
             {
-                secondPoint = new Point(sideLength / 2, leftPoint.Y + height);
+                firstPoint = new Point(leftPoint.X, leftPoint.Y - height);
+                secondPoint = new Point(firstPoint.X + sideLength, firstPoint.Y);
+                thirdPoint = new Point(sideLength / 2, firstPoint.Y + height);
             }
             else
             {
-                secondPoint = new Point(sideLength / 2, leftPoint.Y - height);
+                firstPoint = leftPoint;
+                secondPoint = new Point(sideLength / 2, firstPoint.Y - height);
+                thirdPoint = new Point(leftPoint.X + sideLength, firstPoint.Y);
             }
-
-            thirdPoint = new Point(leftPoint.X + sideLength, leftPoint.Y);
-
+            
             Points = new List<Point>
             {
-                leftPoint,
+                firstPoint,
                 secondPoint,
                 thirdPoint
             };
@@ -51,9 +54,7 @@ namespace FractalerMain.Models
 
 
         public IList<Point> Points { get; private set; }
-
-        public bool IsFlipped { get; private set; } = false;
-
+        
         public double SideLength { get; private set; }
 
         public ISolidColorBrush FillColor { get; set; }

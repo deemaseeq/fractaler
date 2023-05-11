@@ -10,15 +10,14 @@ namespace FractalerMain.ViewModels
 {
     public class SieTriangleViewModel : FractalViewModel
     {
-        public SieTriangleViewModel(int sideLength)
+        public SieTriangleViewModel(int sideLength, int depth)
         {
             SideLenght = sideLength;
             
             MainTriangle = new Triangle(SideLenght, new Point(0, SideLenght));
             MainTriangle.FillColor = Brushes.DarkSalmon;
-
-            //TODO Get this value from a parameter
-            Depth = 6;
+            
+            Depth = depth;
 
             TrianglesCollection = new ObservableCollection<Triangle>();
             TrianglesCollection.Add(MainTriangle);
